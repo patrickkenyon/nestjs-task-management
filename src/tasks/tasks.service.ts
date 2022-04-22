@@ -19,7 +19,7 @@ export class TasksService {
   }
 
   async getTaskById(id: string, user: User): Promise<Task> {
-    const found = await this.tasksRepository.findOne(id, { where: [{ user }] });
+    const found = await this.tasksRepository.findOne({ where: [{ user, id }] });
     if (!found) {
       throw new NotFoundException(`task with id "${id}"`);
     }
